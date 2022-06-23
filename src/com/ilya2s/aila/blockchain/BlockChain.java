@@ -1,6 +1,6 @@
 package com.ilya2s.aila.blockchain;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BlockChain {
@@ -8,7 +8,7 @@ public class BlockChain {
     private final List<Block> blockChain;
 
     public BlockChain() {
-        this.blockChain = new LinkedList<>();
+        this.blockChain = new ArrayList<>();
     }
 
     public void generateBlock() {
