@@ -1,7 +1,6 @@
 package com.ilya2s.aila.blockchain;
 
 import com.ilya2s.aila.util.StringUtil;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 
@@ -19,7 +18,6 @@ public class Block {
         this.hash = makeHash();
     }
 
-    @NotNull
     protected String makeHash() {
         return StringUtil.applySha256((
                 Long.toString(this.id)

@@ -1,6 +1,5 @@
 package com.ilya2s.aila.blockchain;
 
-
 import java.util.ArrayList;
 
 public class BlockChain {
