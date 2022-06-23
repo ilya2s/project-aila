@@ -1,2 +1,2 @@
 # PROJECT AILA
-A blokchain built with java
+A blockchain built with java
