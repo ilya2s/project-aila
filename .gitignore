@@ -45,6 +45,8 @@ bin/
 /dist/
 /nbdist/
 /.nb-gradle/
+/aila-project.iml
+/.idea
 
 ### VS Code ###
 .vscode/
