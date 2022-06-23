@@ -1,17 +1,18 @@
 package com.ilya2s.aila.blockchain;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class BlockChain {
 
-    private final ArrayList<Block> blockChain;
+    private final List<Block> blockChain;
 
     public BlockChain() {
-        this.blockChain = new ArrayList<>();
+        this.blockChain = new LinkedList<>();
     }
 
     public void generateBlock() {
-        if (this.blockChain.size() == 0) {
+        if (this.blockChain.isEmpty()) {
             Block firstBlock = new Block("0");
             this.blockChain.add(firstBlock);
         } else {
@@ -23,6 +24,8 @@ public class BlockChain {
     }
 
     public boolean validate() {
+        if (this.blockChain.isEmpty()) return true;
+
         Block currentBlock;
         Block previousBlock;
         for (int i = 1; i < this.blockChain.size(); i++) {
@@ -40,7 +43,6 @@ public class BlockChain {
 
         return true;
     }
-
 
     @Override
     public String toString() {
