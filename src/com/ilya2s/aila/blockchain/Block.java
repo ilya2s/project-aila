@@ -5,20 +5,20 @@ import com.ilya2s.aila.util.StringUtil;
 import java.util.Date;
 
 public class Block {
-    protected static long idCount = 0;
-    protected final long id;
-    protected final long timestamp;
-    protected final String previousHash;
-    protected final String hash;
+    static long idCount = 0;
+    final long id;
+    final long timestamp;
+    final String previousHash;
+    final String hash;
 
-    public Block(String previousHash) {
+    Block(String previousHash) {
         this.id = ++idCount;
         this.timestamp = new Date().getTime();
         this.previousHash = previousHash;
         this.hash = makeHash();
     }
 
-    protected String makeHash() {
+    String makeHash() {
         return StringUtil.applySha256((
                 Long.toString(this.id)
                 + this.timestamp
@@ -33,7 +33,8 @@ public class Block {
                 "Hash of the previous block:" + System.getProperty("line.separator") +
                 this.previousHash + System.getProperty("line.separator") +
                 "Hash of the block:" + System.getProperty("line.separator") +
-                this.hash;
+                this.hash + System.getProperty("line.separator") +
+                "----------------------------------------------------------------";
     }
 
 

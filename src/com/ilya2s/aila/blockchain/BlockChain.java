@@ -8,6 +8,7 @@ public class BlockChain {
     private final List<Block> blockChain;
 
     public BlockChain() {
+        Block.idCount = 0;
         this.blockChain = new ArrayList<>();
     }
 
@@ -42,6 +43,15 @@ public class BlockChain {
         }
 
         return true;
+    }
+
+    public Block getBlock(long id) {
+        for (Block b : blockChain) {
+            if (b.id == id) {
+                return b;
+            }
+        }
+        return null;
     }
 
     @Override
