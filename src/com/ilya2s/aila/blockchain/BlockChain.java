@@ -45,13 +45,8 @@ public class BlockChain {
         return true;
     }
 
-    public Block getBlock(long id) {
-        for (Block b : blockChain) {
-            if (b.id == id) {
-                return b;
-            }
-        }
-        return null;
+    public Block getBlockById(int id) {
+        return this.blockChain.get(id - 1);
     }
 
     @Override

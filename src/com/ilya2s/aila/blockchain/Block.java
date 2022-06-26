@@ -5,8 +5,8 @@ import com.ilya2s.aila.util.StringUtil;
 import java.util.Date;
 
 public class Block {
-    static long idCount = 0;
-    final long id;
+    static int idCount = 0;
+    final int id;
     final long timestamp;
     final String previousHash;
     final String hash;

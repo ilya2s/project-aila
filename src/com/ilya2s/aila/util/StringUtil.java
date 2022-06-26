@@ -1,8 +1,9 @@
 package com.ilya2s.aila.util;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
-public class StringUtil {
+public final class StringUtil {
 
     /**
      * Applies Sha256 to a string and returns a hash.
@@ -14,7 +15,7 @@ public class StringUtil {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
 
             // Apply sha256 to the input
-            byte[] hash = digest.digest(input.getBytes("UTF-8"));
+            byte[] hash = digest.digest(input.getBytes(StandardCharsets.UTF_8));
             StringBuilder hexString = new StringBuilder();
 
             for (byte elem : hash) {
