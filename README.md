@@ -1,4 +1,4 @@
-# AILA - A Java-based blockchain simulation project
+# Project AILA :full_moon: - A blockchain simulation project
 
 ```
                  __   __   __        ___  __  ___                     
