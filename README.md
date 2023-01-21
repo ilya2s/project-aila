@@ -5,7 +5,7 @@ This is the first stage of the project. In this stage, the goal is to implement 
 ## Getting Started
 The project is implemented in Java and utilizes the SHA-256 hashing algorithm for secure block creation. The following are the key features of the first stage:
 - Every block in the blockchain contains the hash of the previous block and a unique identifier.
-- The first block in the chain has id = 1 and the hash of the previous block is 0.
+- The first block in the chain has `id = 1` and the hash of the previous block `previousHash = 0`.
 - Every block also contains a timestamp representing the time the block was created.
 - The class `Blockchain` has at least two methods: `generateBlock()` to generate a new block and `validate()` to validate the entire blockchain.
 - The `validate()` method checks that the hash of the previous block matches the previous hash stored in the current block.
