@@ -1,7 +1,6 @@
 package com.ilya2s.aila.blockchain;
 
 import com.ilya2s.aila.util.StringUtil;
-
 import java.util.Date;
 
 public class Block {
@@ -27,15 +26,15 @@ public class Block {
 
     @Override
     public String toString() {
-        return "Block:" + System.getProperty("line.separator") +
-                "Id: " + this.id + System.getProperty("line.separator") +
-                "Timestamp: " + this.timestamp + System.getProperty("line.separator") +
-                "Hash of the previous block:" + System.getProperty("line.separator") +
-                this.previousHash + System.getProperty("line.separator") +
-                "Hash of the block:" + System.getProperty("line.separator") +
-                this.hash + System.getProperty("line.separator") +
-                "----------------------------------------------------------------";
+        return String.format(
+                """
+                        Block:
+                        Id: %d
+                        Timestamp: %d
+                        Hash of the previous block:
+                        %s
+                        Hash of the block:
+                        %s
+                        """, id, timestamp, previousHash, hash);
     }
-
-
 }

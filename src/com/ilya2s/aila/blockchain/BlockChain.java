@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlockChain {
-
     private final List<Block> blockChain;
 
     public BlockChain() {
@@ -41,22 +40,19 @@ public class BlockChain {
                 return false;
             }
         }
-
         return true;
-    }
-
-    public Block getBlockById(int id) {
-        return this.blockChain.get(id - 1);
     }
 
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
-        for (Block block : blockChain) {
-            output.append(block).append(System.getProperty("line.separator"));
-        }
 
+        for (Block block : blockChain) {
+            output
+                    .append(block)
+                    .append("----------------------------------------------------------------")
+                    .append(System.getProperty("line.separator"));
+        }
         return output.toString();
     }
-
 }
