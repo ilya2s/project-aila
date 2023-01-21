@@ -1,6 +1,5 @@
 package com.ilya2s.aila;
 
-import com.ilya2s.aila.blockchain.Block;
 import com.ilya2s.aila.blockchain.BlockChain;
 
 public class Aila {
@@ -9,11 +8,9 @@ public class Aila {
 
         BlockChain aila = new BlockChain();
 
-        aila.generateBlock();
-        aila.generateBlock();
-        aila.generateBlock();
-        aila.generateBlock();
-        aila.generateBlock();
+        for (int i = 0; i < 5; i++) {
+            aila.generateBlock();
+        }
 
         System.out.println("=====================");
         System.out.println("BLOCKCHAIN IS " + (aila.validate() ? "VALID" : "INVALID"));
