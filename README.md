@@ -16,4 +16,4 @@ To use the project, you can clone the repository and open it in an IDE of your c
 You should create 5 blocks in this stage. After the creation, validate the created blockchain using your validation method.
 
 ## Conclusion
-This is the first stage of the Blockchain project from Jetbrains Academy and it aims to give a basic understanding of how a blockchain works
+This is the first stage of the [Blockchain project from Jetbrains Academy](https://hyperskill.org/projects/50?track=15) and it aims to give a basic understanding of how a blockchain works
