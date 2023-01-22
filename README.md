@@ -1,6 +1,8 @@
 # Project AILA :rocket::full_moon: A blockchain simulation project
-
 This is the first stage of the project. In this stage, the goal is to implement a simple blockchain that can store a sequence of data in the form of blocks.
+
+![image](https://user-images.githubusercontent.com/42526358/213894377-bff770d4-cf00-4534-9b8d-da75b51cd86e.png)
+
 
 ## Getting Started
 The project is implemented in Java and utilizes the SHA-256 hashing algorithm for secure block creation. The following are the key features of the first stage:
