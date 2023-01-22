@@ -11,17 +11,17 @@ public class Block {
     final String hash;
 
     Block(String previousHash) {
-        this.id = ++idCount;
-        this.timestamp = new Date().getTime();
+        id = ++idCount;
+        timestamp = new Date().getTime();
         this.previousHash = previousHash;
-        this.hash = makeHash();
+        hash = makeHash();
     }
 
     String makeHash() {
         return StringUtil.applySha256((
-                Long.toString(this.id)
-                + this.timestamp
-                + this.previousHash));
+                Long.toString(id)
+                + timestamp
+                + previousHash));
     }
 
     @Override

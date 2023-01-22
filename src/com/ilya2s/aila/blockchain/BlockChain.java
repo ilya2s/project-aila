@@ -1,36 +1,26 @@
 package com.ilya2s.aila.blockchain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 public class BlockChain {
-    private final List<Block> blockChain;
+    private final LinkedList<Block> chain;
 
     public BlockChain() {
         Block.idCount = 0;
-        this.blockChain = new ArrayList<>();
+        chain = new LinkedList<>();
     }
 
     public void generateBlock() {
-        if (this.blockChain.isEmpty()) {
-            Block firstBlock = new Block("0");
-            this.blockChain.add(firstBlock);
-        } else {
-            Block previousBlock = this.blockChain.get(this.blockChain.size() - 1);
-            Block currentBlock = new Block(previousBlock.hash);
-
-            this.blockChain.add(currentBlock);
-        }
+        String previousHash = chain.isEmpty() ? "0" : chain.getLast().hash;
+        chain.add(new Block(previousHash));
     }
 
     public boolean validate() {
-        if (this.blockChain.isEmpty()) return true;
+        if (chain.isEmpty()) return true;
 
-        Block currentBlock;
-        Block previousBlock;
-        for (int i = 1; i < this.blockChain.size(); i++) {
-            currentBlock = this.blockChain.get(i);
-            previousBlock = this.blockChain.get(i - 1);
+        for (int i = 1; i < chain.size(); i++) {
+            Block currentBlock = chain.get(i);
+            Block previousBlock = chain.get(i - 1);
 
             if (!currentBlock.hash.equals(currentBlock.makeHash())) {
                 return false;
@@ -47,7 +37,7 @@ public class BlockChain {
     public String toString() {
         StringBuilder output = new StringBuilder();
 
-        for (Block block : blockChain) {
+        for (Block block : chain) {
             output
                     .append(block)
                     .append("----------------------------------------------------------------")
