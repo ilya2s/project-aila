@@ -24,12 +24,13 @@ public class Block {
      * @param id the block ID
      * @param previousHash the hash of the previous block in the blockchain
      */
-    Block(int id, String previousHash) {
+    public Block(int id, String previousHash) {
         this.id = id;
         this.timestamp = Instant.now().toEpochMilli();
         this.previousHash = previousHash;
         hash = makeHash();
     }
+
 
     /**
      * Returns the hash of the previous block in the blockchain.
@@ -51,11 +52,6 @@ public class Block {
     }
 
 
-    /**
-     * Returns a formatted string representation of this block.
-     *
-     * @return a formatted string representation of this block
-     */
     @Override
     public String toString() {
         return String.format(
@@ -76,7 +72,7 @@ public class Block {
      *
      * @return the hash of this block
      */
-    String makeHash() {
+    public String makeHash() {
         return StringUtil.applySha256(previousHash + timestamp + id);
     }
 }
