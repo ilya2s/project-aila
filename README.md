@@ -1,21 +1,21 @@
-# Project AILA :rocket::full_moon: A blockchain simulation project
-This is the first stage of the project. In this stage, the goal is to implement a simple blockchain that can store a sequence of data in the form of blocks.
+# Project AILA :rocket::full_moon:
+This is a blockchain simulation project that demonstrates the creation and validation of a simple blockchain using Java and SHA-256 hashing algorithm. The goal of the project is to gain a basic understanding of how a blockchain works.
 
 ![image](https://user-images.githubusercontent.com/42526358/213894377-bff770d4-cf00-4534-9b8d-da75b51cd86e.png)
 
-
-## Getting Started
-The project is implemented in Java and utilizes the SHA-256 hashing algorithm for secure block creation. The following are the key features of the first stage:
+## Features
 - Every block in the blockchain contains the hash of the previous block and a unique identifier.
-- The first block in the chain has `id = 1` and the hash of the previous block `previousHash = 0`.
+- The first block in the chain, called `genesisBlock` serves as the starting point for the blockchain.
+- the genesis block has an ID of 1 and a previous hash value of a zero hash.
 - Every block also contains a timestamp representing the time the block was created.
-- The class `Blockchain` has at least two methods: `generateBlock()` to generate a new block and `validate()` to validate the entire blockchain.
-- The `validate()` method checks that the hash of the previous block matches the previous hash stored in the current block.
 
-## Usage
-To use the project, you can clone the repository and open it in an IDE of your choice. You can then run the `Aila.java` file and use the methods to generate and validate blocks. The project includes a `StringUtil` class that can be used to hash the blocks using the SHA-256 algorithm.
+##Usage
+To run the project, you can follow these steps:
+- Clone the repository to your local machine.
+- Open the project in an IDE of your choice.
+- Run the Aila.java file.
 
-You should create 5 blocks in this stage. After the creation, validate the created blockchain using your validation method.
+The project will generate 5 blocks and validate the blockchain. You can modify the NUMBER_OF_BLOCKS constant in the Aila.java file to generate more or fewer blocks.
 
 ## Conclusion
-This is the first stage of the [Blockchain project from Jetbrains Academy](https://hyperskill.org/projects/50?track=15) and it aims to give a basic understanding of how a blockchain works
+This is the first stage of the [Blockchain project from Jetbrains Academy](https://hyperskill.org/projects/50?track=15) and it aims to give a basic understanding of how a blockchain works. In the next stage, more advanced features will be added to the blockchain, such as transactions, mining, and consensus algorithms.
