@@ -1,38 +1,40 @@
 package com.ilya2s.aila.blockchain;
 
 import com.ilya2s.aila.util.StringUtil;
-import java.util.Date;
+
+import java.time.Instant;
 
 public class Block {
-    public static int idCount = 0;
     private final int id;
     private final long timestamp;
-    private final String previousHash;
     private final String hash;
-    private final long magic;
+    private final String previousHash;
+
+    Block(int id, String previousHash) {
+        this.id = id;
+        this.timestamp = Instant.now().toEpochMilli();
+        this.previousHash = previousHash;
+        hash = makeHash();
+    }
+
+
+    String makeHash() {
+        return StringUtil.applySha256(previousHash + timestamp + id);
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public String getPreviousHash() {
         return previousHash;
     }
 
+
     public String getHash() {
         return hash;
     }
 
-    Block(String previousHash) {
-        id = ++idCount;
-        timestamp = new Date().getTime();
-        this.previousHash = previousHash;
-        hash = makeHash();
-        magic = 0L;
-    }
-
-    String makeHash() {
-        return StringUtil.applySha256((
-                Long.toString(id)
-                + timestamp
-                + previousHash));
-    }
 
     @Override
     public String toString() {
