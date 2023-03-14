@@ -7,15 +7,15 @@ import java.util.ArrayList;
  */
 public class Blockchain {
     private final ArrayList<Block> chain;
-    private final BlockFactory factory;
+    private final AilaBlockFactory factory;
 
 
     /**
      * Creates a new blockchain with a genesis block.
      */
     public Blockchain() {
-        chain = new ArrayList<>(100);   // Initial capacity of 100
-        factory = new BlockFactory();
+        chain = new ArrayList<>();
+        factory = new AilaBlockFactory();
 
         chain.add(factory.createGenesisBlock());
     }
@@ -24,9 +24,11 @@ public class Blockchain {
     /**
      * Generates a new block in the blockchain.
      */
-    public void generateBlock() {
-        Block currentBlock = factory.createBlock(chain.size() + 1, chain.get(chain.size() - 1).getHash());
+    public Block generateBlock() {
+        Block currentBlock = factory.createNewBlock(chain.size() + 1, chain.get(chain.size() - 1).getHash());
         chain.add(currentBlock);
+
+        return currentBlock;
     }
 
 

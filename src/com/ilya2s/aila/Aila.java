@@ -3,7 +3,8 @@ package com.ilya2s.aila;
 import com.ilya2s.aila.blockchain.Blockchain;
 
 public class Aila {
-    private static final int NUMBER_OF_BLOCKS = 5;
+    public static final int NUMBER_OF_BLOCKS = 5;
+    public static final int DIFFICULTY = 5;
 
     public static void main(String[] args) {
         Blockchain aila = new Blockchain();
