@@ -28,6 +28,8 @@ de28b408eeeb0a83feeec0740b7c8c8d7205fe97827c59573e01cace8924dd26
 - The first block in the chain, called `genesisBlock` serves as the starting point for the blockchain.
 - the genesis block has an ID of 1 and a previous hash value of a zero hash.
 - Every block also contains a timestamp representing the time the block was created.
+-  introduced proof-of-work to make the blockchain more secure.
+- Every block contains a nonce (random number) that, when combined with the block data, produces a hash value that meets a certain difficulty level.
 
 ## Usage
 To run the project, you can follow these steps:
