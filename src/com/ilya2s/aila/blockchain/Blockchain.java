@@ -2,16 +2,16 @@ package com.ilya2s.aila.blockchain;
 
 import java.util.LinkedList;
 
-public class BlockChain {
+public class Blockchain {
     private final LinkedList<Block> chain;
 
-    public BlockChain() {
+    public Blockchain() {
         Block.idCount = 0;
         chain = new LinkedList<>();
     }
 
     public void generateBlock() {
-        String previousHash = chain.isEmpty() ? "0" : chain.getLast().hash;
+        String previousHash = chain.isEmpty() ? "0" : chain.getLast().getHash();
         chain.add(new Block(previousHash));
     }
 
@@ -22,11 +22,11 @@ public class BlockChain {
             Block currentBlock = chain.get(i);
             Block previousBlock = chain.get(i - 1);
 
-            if (!currentBlock.hash.equals(currentBlock.makeHash())) {
+            if (!currentBlock.getHash().equals(currentBlock.makeHash())) {
                 return false;
             }
 
-            if (!previousBlock.hash.equals(currentBlock.previousHash)) {
+            if (!previousBlock.getHash().equals(currentBlock.getPreviousHash())) {
                 return false;
             }
         }
