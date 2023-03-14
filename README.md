@@ -9,7 +9,7 @@ This is a blockchain simulation project that demonstrates the creation and valid
 - the genesis block has an ID of 1 and a previous hash value of a zero hash.
 - Every block also contains a timestamp representing the time the block was created.
 
-##Usage
+## Usage
 To run the project, you can follow these steps:
 - Clone the repository to your local machine.
 - Open the project in an IDE of your choice.
