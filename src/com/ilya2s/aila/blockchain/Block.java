@@ -73,6 +73,13 @@ public class Block {
     }
 
 
+    /**
+     * Finds a nonce that, when added to the block data and hashed,
+     * produces a hash with the given number of leading zeros.
+     *
+     * @param difficulty the number of leading zeros the hash should have
+     * @return the nonce that produces a valid hash
+     */
     private int findNonce(int difficulty) {
         String target = "0".repeat(difficulty);
 
@@ -95,11 +102,12 @@ public class Block {
                         Block:
                         Id: %d
                         Timestamp: %d
+                        Nonce: %d
                         Hash of the previous block:
                         %s
                         Hash of the block:
                         %s
                         Block was generating for %d seconds
-                        """, id, timestamp, previousHash, hash, generationTime.toSeconds());
+                        """, id, timestamp, nonce, previousHash, hash, generationTime.toSeconds());
     }
 }
