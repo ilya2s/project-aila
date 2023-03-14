@@ -5,9 +5,11 @@ import com.ilya2s.aila.util.StringUtil;
 public class BlockFactory {
     private final String genesisBlockHash;
 
+
     public BlockFactory() {
-        genesisBlockHash = StringUtil.applySha256("0");
+        genesisBlockHash = StringUtil.applySha256(Block.ZERO_HASH);
     }
+
 
     public Block createGenesisBlock() {
         return createBlock(1, genesisBlockHash);

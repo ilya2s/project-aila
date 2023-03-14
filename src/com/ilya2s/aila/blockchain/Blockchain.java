@@ -3,29 +3,26 @@ package com.ilya2s.aila.blockchain;
 import java.util.ArrayList;
 
 public class Blockchain {
-    private final ArrayList<Block> blockchain;
-    private final BlockFactory blockFactory;
+    private final ArrayList<Block> chain;
+    private final BlockFactory factory;
 
     public Blockchain() {
-        blockchain = new ArrayList<>();
-        blockFactory = new BlockFactory();
+        chain = new ArrayList<>();
+        factory = new BlockFactory();
 
-        this.blockchain.add(blockFactory.createGenesisBlock());
+        this.chain.add(factory.createGenesisBlock());
     }
 
-    public Block generateBlock() {
-        Block currentBlock = blockFactory
-                .createBlock(blockchain.size(), blockchain.get(blockchain.size() - 1).getHash());
+    public void generateBlock() {
+        Block currentBlock = factory.createBlock(chain.size() + 1, chain.get(chain.size() - 1).getHash());
 
-        blockchain.add(currentBlock);
+        chain.add(currentBlock);
     }
 
     public boolean validate() {
-        if (blockchain.isEmpty()) return true;
-
-        for (int i = 1; i < blockchain.size(); i++) {
-            Block currentBlock = blockchain.get(i);
-            Block previousBlock = blockchain.get(i - 1);
+        for (int i = 1; i < chain.size(); i++) {
+            Block currentBlock = chain.get(i);
+            Block previousBlock = chain.get(i - 1);
 
             if (!currentBlock.getHash().equals(currentBlock.makeHash())) {
                 return false;
@@ -42,7 +39,7 @@ public class Blockchain {
     public String toString() {
         StringBuilder output = new StringBuilder();
 
-        for (Block block : blockchain) {
+        for (Block block : chain) {
             output
                     .append(block)
                     .append("----------------------------------------------------------------")

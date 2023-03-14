@@ -4,12 +4,26 @@ import com.ilya2s.aila.util.StringUtil;
 
 import java.time.Instant;
 
+/**
+ * Represents a block in the blockchain.
+ */
 public class Block {
     private final int id;
     private final long timestamp;
     private final String hash;
     private final String previousHash;
 
+
+    /** The zero hash value for the genesis block. */
+    public static final String ZERO_HASH = "0".repeat(64);
+
+
+    /**
+     * Creates a new block with the given ID and previous block hash.
+     *
+     * @param id the block ID
+     * @param previousHash the hash of the previous block in the blockchain
+     */
     Block(int id, String previousHash) {
         this.id = id;
         this.timestamp = Instant.now().toEpochMilli();
@@ -17,25 +31,31 @@ public class Block {
         hash = makeHash();
     }
 
-
-    String makeHash() {
-        return StringUtil.applySha256(previousHash + timestamp + id);
-    }
-
-    public int getId() {
-        return id;
-    }
-
+    /**
+     * Returns the hash of the previous block in the blockchain.
+     *
+     * @return the hash of the previous block
+     */
     public String getPreviousHash() {
         return previousHash;
     }
 
 
+    /**
+     * Return the hash of this block.
+     *
+     * @return the hash of this block
+     */
     public String getHash() {
         return hash;
     }
 
 
+    /**
+     * Returns a formatted string representation of this block.
+     *
+     * @return a formatted string representation of this block
+     */
     @Override
     public String toString() {
         return String.format(
@@ -48,5 +68,15 @@ public class Block {
                         Hash of the block:
                         %s
                         """, id, timestamp, previousHash, hash);
+    }
+
+
+    /**
+     * Computes the hash of this block.
+     *
+     * @return the hash of this block
+     */
+    String makeHash() {
+        return StringUtil.applySha256(previousHash + timestamp + id);
     }
 }
