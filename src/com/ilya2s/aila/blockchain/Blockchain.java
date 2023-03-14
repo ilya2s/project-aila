@@ -7,8 +7,7 @@ public class Blockchain {
     private final ArrayList<Block> blockchain;
 
     public Blockchain() {
-        Block.idCount = 0;
-        blockchain = new LinkedList<>();
+        blockchain = new ArrayList<>();
     }
 
     public void generateBlock() {
