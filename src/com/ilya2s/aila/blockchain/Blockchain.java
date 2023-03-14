@@ -1,18 +1,23 @@
 package com.ilya2s.aila.blockchain;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Blockchain {
     private final ArrayList<Block> blockchain;
+    private final BlockFactory blockFactory;
 
     public Blockchain() {
         blockchain = new ArrayList<>();
+        blockFactory = new BlockFactory();
+
+        this.blockchain.add(blockFactory.createGenesisBlock());
     }
 
-    public void generateBlock() {
-        String previousHash = blockchain.isEmpty() ? "0" : blockchain.getLast().getHash();
-        blockchain.add(new Block(previousHash));
+    public Block generateBlock() {
+        Block currentBlock = blockFactory
+                .createBlock(blockchain.size(), blockchain.get(blockchain.size() - 1).getHash());
+
+        blockchain.add(currentBlock);
     }
 
     public boolean validate() {
