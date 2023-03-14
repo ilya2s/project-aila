@@ -1,26 +1,27 @@
 package com.ilya2s.aila.blockchain;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Blockchain {
-    private final LinkedList<Block> chain;
+    private final ArrayList<Block> blockchain;
 
     public Blockchain() {
         Block.idCount = 0;
-        chain = new LinkedList<>();
+        blockchain = new LinkedList<>();
     }
 
     public void generateBlock() {
-        String previousHash = chain.isEmpty() ? "0" : chain.getLast().getHash();
-        chain.add(new Block(previousHash));
+        String previousHash = blockchain.isEmpty() ? "0" : blockchain.getLast().getHash();
+        blockchain.add(new Block(previousHash));
     }
 
     public boolean validate() {
-        if (chain.isEmpty()) return true;
+        if (blockchain.isEmpty()) return true;
 
-        for (int i = 1; i < chain.size(); i++) {
-            Block currentBlock = chain.get(i);
-            Block previousBlock = chain.get(i - 1);
+        for (int i = 1; i < blockchain.size(); i++) {
+            Block currentBlock = blockchain.get(i);
+            Block previousBlock = blockchain.get(i - 1);
 
             if (!currentBlock.getHash().equals(currentBlock.makeHash())) {
                 return false;
@@ -37,7 +38,7 @@ public class Blockchain {
     public String toString() {
         StringBuilder output = new StringBuilder();
 
-        for (Block block : chain) {
+        for (Block block : blockchain) {
             output
                     .append(block)
                     .append("----------------------------------------------------------------")
