@@ -1,12 +1,13 @@
 package com.ilya2s.aila.blockchain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple implementation of a blockchain.
  */
 public class Blockchain {
-    private final ArrayList<Block> chain;
+    private final List<Block> chain;
     private final AilaBlockFactory factory;
 
 

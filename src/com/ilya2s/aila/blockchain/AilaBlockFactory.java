@@ -7,19 +7,6 @@ import com.ilya2s.aila.util.StringUtil;
  * A factory for creating blocks in the blockchain.
  */
 public class AilaBlockFactory implements BlockFactory {
-    private final String genesisBlockHash;
-    private final int difficulty;
-
-
-    /**
-     * Creates a new block factory.
-     */
-    public AilaBlockFactory() {
-        genesisBlockHash = StringUtil.applySha256(Block.ZERO_HASH);
-        difficulty = Aila.DIFFICULTY;
-    }
-
-
     /**
      * Creates the genesis block in the blockchain.
      *
@@ -27,7 +14,7 @@ public class AilaBlockFactory implements BlockFactory {
      */
     @Override
     public Block createGenesisBlock() {
-        return createNewBlock(1, genesisBlockHash);
+        return createNewBlock(1, StringUtil.applySha256(Block.ZERO_HASH));
     }
 
 
@@ -39,6 +26,6 @@ public class AilaBlockFactory implements BlockFactory {
      */
     @Override
     public Block createNewBlock(int id, String previousHash) {
-        return new Block(id, previousHash, difficulty);
+        return new Block(id, previousHash, Aila.DIFFICULTY);
     }
 }
