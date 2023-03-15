@@ -1,7 +1,6 @@
 package com.ilya2s.aila.blockchain;
 
 import com.ilya2s.aila.Aila;
-import com.ilya2s.aila.util.StringUtil;
 
 /**
  * A factory for creating blocks in the blockchain.
