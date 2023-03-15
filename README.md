@@ -56,9 +56,9 @@ The project is divided into the following components:
 
 ## Installation
 1. Clone the repository:
-```bash
-git clone https://github.com/ilya2s/project-aila.git
-```
+    ```bash
+    git clone https://github.com/ilya2s/project-aila.git
+    ```
 2. Import the project into your favorite Java IDE.
 3. Ensure that your IDE is configured to use Java 11 or higher.
 

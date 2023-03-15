@@ -19,7 +19,7 @@ public class Block {
 
 
     /** The zero hash value for the genesis block. */
-    public static final String ZERO_HASH = "0".repeat(64);
+    public static final String ZERO_HASH = StringUtil.applySha256("0");
 
 
     /**

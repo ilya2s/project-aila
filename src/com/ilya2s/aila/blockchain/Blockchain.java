@@ -18,18 +18,32 @@ public class Blockchain {
         chain = new ArrayList<>();
         factory = new AilaBlockFactory();
 
-        chain.add(factory.createGenesisBlock());
+        /*
+         TODO: Maybe Genesis block should not be generated on Blockchain creation as blockchain should not generate
+         TODO: blocks but rather keep
+        */
     }
 
 
     /**
      * Generates a new block in the blockchain.
+     * If the chain is empty, it creates a genesis block.
+     * Otherwise, it creates a new block with the next ID and the previous block's hash.
+     * The new block is then added to the blockchain.
+     *
+     * @return the newly generated block
      */
     public Block generateBlock() {
-        Block currentBlock = factory.createNewBlock(chain.size() + 1, chain.get(chain.size() - 1).getHash());
-        chain.add(currentBlock);
+        Block block;
+        if (chain.isEmpty()) {
+            block = factory.createGenesisBlock();
+        } else {
+            block = factory.createNewBlock(chain.size() + 1, chain.get(chain.size() -1).getHash());
+        }
 
-        return currentBlock;
+        chain.add(block);
+
+        return block;
     }
 
 

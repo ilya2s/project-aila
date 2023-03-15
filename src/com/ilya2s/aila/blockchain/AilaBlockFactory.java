@@ -14,7 +14,7 @@ public class AilaBlockFactory implements BlockFactory {
      */
     @Override
     public Block createGenesisBlock() {
-        return createNewBlock(1, StringUtil.applySha256(Block.ZERO_HASH));
+        return createNewBlock(1, Block.ZERO_HASH);
     }
 
 

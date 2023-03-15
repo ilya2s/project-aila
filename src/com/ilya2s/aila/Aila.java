@@ -9,16 +9,12 @@ public class Aila {
     public static void main(String[] args) {
         Blockchain aila = new Blockchain();
 
-        for (int i = 0; i < NUMBER_OF_BLOCKS - 1; i++) {
-            aila.generateBlock();
+        for (int i = 0; i < NUMBER_OF_BLOCKS; i++) {
+            System.out.println(aila.generateBlock());
         }
 
         System.out.println("=====================");
         System.out.println("BLOCKCHAIN IS " + (aila.validate() ? "VALID" : "INVALID"));
         System.out.println("=====================");
-
-        System.out.println(aila);
-
-
     }
 }
