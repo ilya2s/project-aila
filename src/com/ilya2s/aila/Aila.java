@@ -2,6 +2,9 @@ package com.ilya2s.aila;
 
 import com.ilya2s.aila.blockchain.Blockchain;
 
+/**
+ * Hi, this is a comment from Aila.
+ */
 public class Aila {
     public static final int NUMBER_OF_BLOCKS = 5;
     public static final int DIFFICULTY = 6;
