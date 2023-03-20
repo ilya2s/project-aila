@@ -23,7 +23,7 @@ public class Block {
 
 
     /**
-     * Creates a new block with the given ID and previous block hash.
+     * Creates a new block with the given ID, previous block hash, and mining difficulty.
      *
      * @param id the block ID
      * @param previousHash the hash of the previous block in the blockchain
@@ -64,9 +64,10 @@ public class Block {
 
 
     /**
-     * Computes the hash of this block.
+     * Computes and returns the hash of this block by concatenating its previous hash,
+     * timestamp, ID, and nonce, and applying the SHA-256 algorithm.
      *
-     * @return the hash of this block
+     * @return the computed hash of this block
      */
     public String makeHash() {
         return StringUtil.applySha256(previousHash + timestamp + id + nonce);
@@ -74,8 +75,8 @@ public class Block {
 
 
     /**
-     * Finds a nonce that, when added to the block data and hashed,
-     * produces a hash with the given number of leading zeros.
+     * Finds a nonce that, when added to the block data and hashed, produces a hash
+     * with the given number of leading zeros.
      *
      * @param difficulty the number of leading zeros the hash should have
      * @return the nonce that produces a valid hash
@@ -95,6 +96,14 @@ public class Block {
     }
 
 
+    /**
+     * Returns a string representation of the Block object.
+     * <p>
+     * The string representation includes the block's ID, timestamp, nonce, previous block's hash,
+     * current block's hash, and the time it took to generate the block.
+     *
+     * @return a string representation of the block
+     */
     @Override
     public String toString() {
         return String.format(

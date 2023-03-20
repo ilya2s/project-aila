@@ -1,5 +1,8 @@
 package com.ilya2s.aila.blockchain;
 
+/**
+ * An interface for creating blocks in the blockchain.
+ */
 public interface BlockFactory {
 
     Block createGenesisBlock();

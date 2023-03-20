@@ -12,28 +12,25 @@ public class Blockchain {
 
 
     /**
-     * Creates a new blockchain with a genesis block.
+     * Creates a new blockchain.
+     * <p>
+     * Initializes an empty chain and an instance of AilaBlockFactory.
      */
     public Blockchain() {
         chain = new ArrayList<>();
         factory = new AilaBlockFactory();
-
-        /*
-         TODO: Maybe Genesis block should not be generated on Blockchain creation as blockchain should not generate
-         TODO: blocks but rather keep
-        */
     }
 
 
     /**
-     * Generates a new block in the blockchain.
-     * If the chain is empty, it creates a genesis block.
-     * Otherwise, it creates a new block with the next ID and the previous block's hash.
-     * The new block is then added to the blockchain.
+     * Mines a new block and adds it to the blockchain.
+     * <p>
+     * If the chain is empty, a genesis block is mined. Otherwise, a new block is mined
+     * with the appropriate ID and previous block hash. The new block is added to the chain.
      *
-     * @return the newly generated block
+     * @return the mined block
      */
-    public Block generateBlock() {
+    public Block mineBlock() {
         Block block;
         if (chain.isEmpty()) {
             block = factory.createGenesisBlock();
@@ -49,8 +46,11 @@ public class Blockchain {
 
     /**
      * Validates the blockchain by checking the hashes of all blocks.
+     * <p>
+     * Ensures that each block's hash matches its computed hash and that
+     * the previous block hash matches the current block's stored previous hash.
      *
-     * @return true if the block is valid, false otherwise
+     * @return true if the blockchain is valid, false otherwise
      */
     public boolean validate() {
         for (int i = 1; i < chain.size(); i++) {
@@ -69,6 +69,11 @@ public class Blockchain {
     }
 
 
+    /**
+     * Returns a string representation of the blockchain.
+     *
+     * @return the string representation of the blockchain
+     */
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
