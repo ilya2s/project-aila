@@ -7,16 +7,17 @@ import java.util.List;
  * A simple implementation of a blockchain.
  */
 public class Blockchain {
+    private static final Blockchain INSTANCE = new Blockchain();
     private final List<Block> chain;
     private final AilaBlockFactory factory;
 
 
     /**
-     * Creates a new blockchain.
+     * Creates a new blockchain. The constructor is private to respect the singleton desing patter for the Blockchain.
      * <p>
      * Initializes an empty chain and an instance of AilaBlockFactory.
      */
-    public Blockchain() {
+    private Blockchain() {
         chain = new ArrayList<>();
         factory = new AilaBlockFactory();
     }
@@ -70,8 +71,14 @@ public class Blockchain {
 
 
     /**
-     * Returns a string representation of the blockchain.
-     *
+     * @return The singleton instance of the Blockchain.
+     */
+    public static Blockchain getInstance() {
+        return INSTANCE;
+    }
+
+
+    /**
      * @return the string representation of the blockchain
      */
     @Override

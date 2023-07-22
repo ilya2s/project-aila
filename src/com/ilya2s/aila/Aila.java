@@ -10,7 +10,7 @@ public class Aila {
     public static final int DIFFICULTY = 6;
 
     public static void main(String[] args) {
-        Blockchain aila = new Blockchain();
+        Blockchain aila = Blockchain.getInstance();
 
         for (int i = 0; i < NUMBER_OF_BLOCKS; i++) {
             System.out.println(aila.mineBlock());
@@ -19,7 +19,5 @@ public class Aila {
         System.out.println("=====================");
         System.out.println("BLOCKCHAIN IS " + (aila.validate() ? "VALID" : "INVALID"));
         System.out.println("=====================");
-
-        System.out.println(aila);
     }
 }

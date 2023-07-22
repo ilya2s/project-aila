@@ -25,7 +25,7 @@ public class AilaBlockFactory implements BlockFactory {
      * Creates a new block with the given ID and previous block hash.
      * <p>
      * The new block is created with the specified ID and previous block hash, and the mining difficulty
-     * is set according to the Aila.DIFFICULTY constant.
+     * is set according to the <code>Aila.DIFFICULTY</code> constant.
      *
      * @param id          the block ID
      * @param previousHash the hash of the previous block in the blockchain
