@@ -13,9 +13,11 @@ public class Aila {
     public static final int DIFFICULTY = 4;
 
     public static void main(String[] args) {
-        Blockchain aila = Blockchain.getInstance();
-        Controller controller = new Controller();
+        Blockchain aila = Blockchain.getInstance(); // Receiver
 
+        Controller controller = new Controller();   // Invoker
+
+        // Commands
         MineBlock mineBlock = new MineBlock(aila);
         ValidateChain validateChain = new ValidateChain(aila);
 
