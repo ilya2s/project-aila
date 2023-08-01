@@ -2,10 +2,12 @@ package com.ilya2s.aila.commands;
 
 import com.ilya2s.aila.blockchain.Blockchain;
 
-public class ValidateChain extends Command implements Executable {
+public class ValidateChain implements Executable {
+
+    private final Blockchain blockchain;
 
     public ValidateChain(Blockchain blockchain) {
-        super(blockchain);
+        this.blockchain = blockchain;
     }
 
     @Override

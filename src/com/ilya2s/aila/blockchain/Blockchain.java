@@ -78,6 +78,23 @@ public class Blockchain {
     }
 
 
+    public boolean isEmpty() {
+        return chain.isEmpty();
+    }
+
+
+    public int size() {
+        return chain.size();
+    }
+
+
+    public Block getLastBlock() {
+        if (chain.isEmpty()) return null;
+
+        return chain.get(chain.size() - 1);
+    }
+
+
     /**
      * @return the string representation of the blockchain
      */
