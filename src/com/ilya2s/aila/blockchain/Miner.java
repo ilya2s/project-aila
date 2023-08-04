@@ -12,18 +12,21 @@ public class Miner {
 
 
     public Block mineBlock() {
-        Block block;
-
-        block = mine();
-
-
-
-
+        Block block = mine();
+        offerBlock(block);
 
         return block;
     }
 
 
+    /**
+     * Mines a new block and adds it to the blockchain.
+     * <p>
+     * If the chain is empty, a genesis block is mined. Otherwise, a new block is mined
+     * with the appropriate ID and previous block hash.
+     *
+     * @return the mined block
+     */
     private Block mine() {
         if (blockchain.isEmpty()) return factory.createGenesisBlock();
 
@@ -31,7 +34,9 @@ public class Miner {
     }
 
 
-    // TODO: Offer block to blockchain
+    private void offerBlock(Block block) {
+        blockchain.addBlock(block);
+    }
 
 
 }

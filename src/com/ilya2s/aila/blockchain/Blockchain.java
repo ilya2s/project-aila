@@ -9,7 +9,6 @@ import java.util.List;
 public class Blockchain {
     private static final Blockchain INSTANCE = new Blockchain();
     private final List<Block> chain;
-    private final AilaBlockFactory factory;
 
 
     /**
@@ -19,29 +18,24 @@ public class Blockchain {
      */
     private Blockchain() {
         chain = new ArrayList<>();
-        factory = new AilaBlockFactory();
     }
 
 
-    /**
-     * Mines a new block and adds it to the blockchain.
-     * <p>
-     * If the chain is empty, a genesis block is mined. Otherwise, a new block is mined
-     * with the appropriate ID and previous block hash. The new block is added to the chain.
-     *
-     * @return the mined block
-     */
-    public Block mineBlock() {
-        Block block;
-        if (chain.isEmpty()) {
-            block = factory.createGenesisBlock();
+    public void addBlock(Block block) {
+        boolean chainIsValid = validate();
+
+        Block last = getLastBlock();
+        boolean newBlockIsValid;
+
+        if (last != null) {
+            newBlockIsValid = block.getPreviousHash().equals(last.getHash());
         } else {
-            block = factory.createNewBlock(chain.size() + 1, chain.get(chain.size() -1).getHash());
+            newBlockIsValid = block.getPreviousHash().equals(Block.ZERO_HASH);
         }
 
-        chain.add(block);
-
-        return block;
+        if (chainIsValid && newBlockIsValid) {
+            chain.add(block);
+        }
     }
 
 
