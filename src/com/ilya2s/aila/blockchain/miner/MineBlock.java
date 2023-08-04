@@ -1,6 +1,6 @@
-package com.ilya2s.aila.commands;
+package com.ilya2s.aila.blockchain.miner;
 
-import com.ilya2s.aila.blockchain.Miner;
+import com.ilya2s.aila.command.Executable;
 
 public class MineBlock implements Executable {
 

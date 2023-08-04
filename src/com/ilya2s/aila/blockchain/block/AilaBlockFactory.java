@@ -1,4 +1,4 @@
-package com.ilya2s.aila.blockchain;
+package com.ilya2s.aila.blockchain.block;
 
 import com.ilya2s.aila.Aila;
 

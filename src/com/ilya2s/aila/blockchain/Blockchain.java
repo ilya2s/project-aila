@@ -1,5 +1,7 @@
 package com.ilya2s.aila.blockchain;
 
+import com.ilya2s.aila.blockchain.block.Block;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,8 @@ import java.util.List;
  */
 public class Blockchain {
     private static final Blockchain INSTANCE = new Blockchain();
-    private final List<Block> chain;
+    private final List<Block> chain = new ArrayList<>();
+    private boolean valid = true;
 
 
     /**
@@ -16,51 +19,29 @@ public class Blockchain {
      * <p>
      * Initializes an empty chain and an instance of AilaBlockFactory.
      */
-    private Blockchain() {
-        chain = new ArrayList<>();
+    private Blockchain() { }
+
+
+    public boolean addBlock(Block newBlock) {
+        if (!valid) return false;
+
+        Block lastBlock = getLastBlock();
+
+        if (validateNewBlock(newBlock, lastBlock)) {
+            return chain.add(newBlock);
+        }
+
+        valid = false;
+        return false;
     }
 
 
-    public void addBlock(Block block) {
-        boolean chainIsValid = validate();
-
-        Block last = getLastBlock();
-        boolean newBlockIsValid;
-
-        if (last != null) {
-            newBlockIsValid = block.getPreviousHash().equals(last.getHash());
-        } else {
-            newBlockIsValid = block.getPreviousHash().equals(Block.ZERO_HASH);
+    private boolean validateNewBlock(Block newBlock, Block lastBlock) {
+        if (lastBlock != null) {
+            return newBlock.getPreviousHash().equals(lastBlock.getHash());
         }
 
-        if (chainIsValid && newBlockIsValid) {
-            chain.add(block);
-        }
-    }
-
-
-    /**
-     * Validates the blockchain by checking the hashes of all blocks.
-     * <p>
-     * Ensures that each block's hash matches its computed hash and that
-     * the previous block hash matches the current block's stored previous hash.
-     *
-     * @return true if the blockchain is valid, false otherwise
-     */
-    public boolean validate() {
-        for (int i = 1; i < chain.size(); i++) {
-            Block currentBlock = chain.get(i);
-            Block previousBlock = chain.get(i - 1);
-
-            if (!currentBlock.getHash().equals(currentBlock.makeHash())) {
-                return false;
-            }
-
-            if (!previousBlock.getHash().equals(currentBlock.getPreviousHash())) {
-                return false;
-            }
-        }
-        return true;
+        return newBlock.getPreviousHash().equals(Block.ZERO_HASH);
     }
 
 

@@ -1,4 +1,4 @@
-package com.ilya2s.aila.commands;
+package com.ilya2s.aila.command;
 
 public interface Executable {
     void execute();

@@ -1,4 +1,9 @@
-package com.ilya2s.aila.blockchain;
+package com.ilya2s.aila.blockchain.miner;
+
+import com.ilya2s.aila.blockchain.Blockchain;
+import com.ilya2s.aila.blockchain.block.AilaBlockFactory;
+import com.ilya2s.aila.blockchain.block.Block;
+import com.ilya2s.aila.blockchain.block.BlockFactory;
 
 public class Miner {
 
@@ -13,9 +18,10 @@ public class Miner {
 
     public Block mineBlock() {
         Block block = mine();
-        offerBlock(block);
 
-        return block;
+        if (offerBlock(block)) return block;
+
+        return null;
     }
 
 
@@ -34,8 +40,8 @@ public class Miner {
     }
 
 
-    private void offerBlock(Block block) {
-        blockchain.addBlock(block);
+    private boolean offerBlock(Block block) {
+        return blockchain.addBlock(block);
     }
 
 

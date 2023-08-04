@@ -1,4 +1,4 @@
-package com.ilya2s.aila.blockchain;
+package com.ilya2s.aila.blockchain.block;
 
 /**
  * An interface for creating blocks in the blockchain.

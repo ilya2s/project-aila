@@ -1,4 +1,4 @@
-package com.ilya2s.aila.commands;
+package com.ilya2s.aila.command;
 
 public class Controller {
     private Executable command;
