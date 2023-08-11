@@ -8,11 +8,10 @@ import com.ilya2s.aila.blockchain.block.BlockFactory;
 public class Miner {
 
     private final Blockchain blockchain;
-    private final BlockFactory factory;
+    private final BlockFactory factory = new AilaBlockFactory();
 
     public Miner(Blockchain blockchain) {
         this.blockchain = blockchain;
-        this.factory = new AilaBlockFactory();
     }
 
 
