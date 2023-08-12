@@ -5,6 +5,9 @@ import com.ilya2s.aila.blockchain.miner.Miner;
 import com.ilya2s.aila.command.Controller;
 import com.ilya2s.aila.blockchain.miner.MineBlock;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * The main class for the Aila blockchain application.
  */
@@ -21,9 +24,13 @@ public class Aila {
         // Commands
         MineBlock mineBlock = new MineBlock(blockMiner);
 
+        ExecutorService executor = Executors.newFixedThreadPool(4);
+
         controller.setCommand(mineBlock);
         for (int i = 0; i < NUMBER_OF_BLOCKS; i++) {
-            controller.executeCommand();
+            executor.submit(controller::executeCommand);
         }
+
+        executor.shutdown();
     }
 }

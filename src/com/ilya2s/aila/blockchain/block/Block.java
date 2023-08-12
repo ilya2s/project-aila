@@ -70,7 +70,7 @@ public class Block {
      * @return the computed hash of this block
      */
     public String makeHash() {
-        return StringUtil.applySha256(previousHash + timestamp + id + nonce);
+        return StringUtil.applySha256(previousHash + timestamp + nonce);
     }
 
 
@@ -89,7 +89,7 @@ public class Block {
 
         do {
            nonce = ThreadLocalRandom.current().nextInt(Integer.MAX_VALUE);
-           hash = StringUtil.applySha256(previousHash + timestamp + id + nonce);
+           hash = StringUtil.applySha256(previousHash + timestamp + nonce);
         } while (!hash.startsWith(target));
 
         return nonce;
