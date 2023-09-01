@@ -17,7 +17,7 @@ public class AilaBlockFactory implements BlockFactory {
      */
     @Override
     public Block createGenesisBlock() {
-        return createNewBlock(1, Block.ZERO_HASH);
+        return createNewBlock(Block.ZERO_HASH);
     }
 
 
@@ -32,7 +32,7 @@ public class AilaBlockFactory implements BlockFactory {
      * @return the new block
      */
     @Override
-    public Block createNewBlock(int id, String previousHash) {
-        return new Block(id, previousHash, Aila.DIFFICULTY);
+    public Block createNewBlock(String previousHash) {
+        return new Block(previousHash, Aila.DIFFICULTY);
     }
 }

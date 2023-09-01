@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * Represents a block in the blockchain.
  */
 public class Block {
-    private final int id;
+    private int id;
     private final long timestamp;
     private final String hash;
     private final String previousHash;
@@ -29,8 +29,7 @@ public class Block {
      * @param previousHash the hash of the previous block in the blockchain
      * @param difficulty the number of leading zeros the block hash should have
      */
-    public Block(int id, String previousHash, int difficulty) {
-        this.id = id;
+    public Block(String previousHash, int difficulty) {
         this.previousHash = previousHash;
         timestamp = Instant.now().toEpochMilli();
 
@@ -40,6 +39,14 @@ public class Block {
 
         hash = makeHash();
         generationTime = Duration.between(startTime, endTime);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 
@@ -60,6 +67,11 @@ public class Block {
      */
     public String getHash() {
         return hash;
+    }
+
+
+    public Duration getGenerationTime() {
+        return generationTime;
     }
 
 

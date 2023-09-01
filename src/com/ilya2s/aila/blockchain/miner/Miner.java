@@ -1,5 +1,6 @@
 package com.ilya2s.aila.blockchain.miner;
 
+import com.ilya2s.aila.Aila;
 import com.ilya2s.aila.blockchain.Blockchain;
 import com.ilya2s.aila.blockchain.block.AilaBlockFactory;
 import com.ilya2s.aila.blockchain.block.Block;
@@ -16,11 +17,13 @@ public class Miner {
 
 
     public Block mineBlock() {
-        Block block = mine();
+        Block block;
 
-        if (offerBlock(block)) return block;
+        while (true) {
+            block = mine();
 
-        return null;
+            if (offerBlock(block)) return block;
+        }
     }
 
 
@@ -33,15 +36,11 @@ public class Miner {
      * @return the mined block
      */
     private Block mine() {
-        if (blockchain.isEmpty()) return factory.createGenesisBlock();
-
-        return factory.createNewBlock(blockchain.size() + 1, blockchain.getLastBlock().getHash());
+        return factory.createNewBlock(blockchain.getLatestBlockHash());
     }
 
 
     private boolean offerBlock(Block block) {
         return blockchain.addBlock(block);
     }
-
-
 }

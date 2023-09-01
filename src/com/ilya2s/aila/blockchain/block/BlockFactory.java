@@ -6,5 +6,5 @@ package com.ilya2s.aila.blockchain.block;
 public interface BlockFactory {
 
     Block createGenesisBlock();
-    Block createNewBlock(int id, String previousHash);
+    Block createNewBlock(String previousHash);
 }

@@ -1,9 +1,15 @@
 package com.ilya2s.aila.blockchain;
 
+import com.ilya2s.aila.Aila;
+import com.ilya2s.aila.blockchain.block.AilaBlockFactory;
 import com.ilya2s.aila.blockchain.block.Block;
+import com.ilya2s.aila.blockchain.block.BlockFactory;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.PriorityBlockingQueue;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * A simple implementation of a blockchain.
@@ -11,7 +17,9 @@ import java.util.List;
 public class Blockchain {
     private static final Blockchain INSTANCE = new Blockchain();
     private final List<Block> chain = new ArrayList<>();
-    private boolean valid = true;
+    private final PriorityBlockingQueue<Block> pendingBlocks = new PriorityBlockingQueue<>(Aila.NUMBER_OF_BLOCKS,
+            Comparator.comparing(Block::getId));
+    private final AtomicReference<String> latestBlockHash = new AtomicReference<>();
 
 
     /**
@@ -19,31 +27,57 @@ public class Blockchain {
      * <p>
      * Initializes an empty chain and an instance of AilaBlockFactory.
      */
-    private Blockchain() { }
+    private Blockchain() {
+        BlockFactory factory = new AilaBlockFactory();
+        addBlock(factory.createGenesisBlock());
+    }
 
 
-    public boolean addBlock(Block newBlock) {
-        if (!valid) return false;
-
+    public synchronized boolean addBlock(Block newBlock) {
         Block lastBlock = getLastBlock();
 
         if (validateNewBlock(newBlock, lastBlock)) {
-            return chain.add(newBlock);
-        }
+            newBlock.setId(Aila.nextID.getAndIncrement());
+            chain.add(newBlock);
 
-        valid = false;
-        return false;
+            long generationTime = newBlock.getGenerationTime().toSeconds();
+            if (generationTime < 1) Aila.DIFFICULTY++;
+            if (generationTime > 60) Aila.DIFFICULTY--;
+
+            latestBlockHash.set(newBlock.getHash());
+
+            while (!pendingBlocks.isEmpty()) {
+                Block nextBlock = pendingBlocks.peek();
+                if (validateNewBlock(nextBlock, getLastBlock())) {
+                    Block block = pendingBlocks.poll();
+                    if (block != null) block.setId(Aila.nextID.getAndIncrement());
+                    chain.add(block);
+
+                    latestBlockHash.set(nextBlock.getHash());
+                } else {
+                    break;
+                }
+            }
+
+            return true;
+        } else {
+            pendingBlocks.add(newBlock);
+            return false;
+        }
     }
 
 
     private boolean validateNewBlock(Block newBlock, Block lastBlock) {
         if (lastBlock != null) {
-            return newBlock.getPreviousHash().equals(lastBlock.getHash());
+            return newBlock.getPreviousHash().equals(getLatestBlockHash());
         }
 
         return newBlock.getPreviousHash().equals(Block.ZERO_HASH);
     }
 
+    public String getLatestBlockHash() {
+        return latestBlockHash.get();
+    }
 
     /**
      * @return The singleton instance of the Blockchain.
@@ -51,12 +85,6 @@ public class Blockchain {
     public static Blockchain getInstance() {
         return INSTANCE;
     }
-
-
-    public boolean isEmpty() {
-        return chain.isEmpty();
-    }
-
 
     public int size() {
         return chain.size();
@@ -80,7 +108,7 @@ public class Blockchain {
         for (Block block : chain) {
             output
                     .append(block)
-                    .append("----------------------------------------------------------------\n");
+                    .append("\n");
         }
         return output.toString();
     }
